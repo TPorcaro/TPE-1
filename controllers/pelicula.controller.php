@@ -61,4 +61,7 @@ class PeliculaController{
         } else
         $this->view->showError("Faltan datos obligatorios");
     }
+    public function showError($msgError){
+        $this->view->showError($msgError);
+    }
 }

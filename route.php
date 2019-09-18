@@ -14,10 +14,6 @@ switch ($partesURL[0]){
         else
         $controller->showPeliculas();
         break;
-    case 'pelicula':
-        $controller= new PeliculaController();
-        $controller->showPelicula($partesURL[1]);
-        break;
     case 'nuevapelicula':
         $controller = new PeliculaController();
         $controller->addPelicula();
@@ -34,8 +30,32 @@ switch ($partesURL[0]){
         $controller = new PeliculaController();
         $controller->editPelicula($partesURL[1]);
         break;
+    case 'generos':
+        $controller= new GeneroController();
+        if (isset($partesURL[1]))
+        $controller-> showGenero($partesURL[1]);
+        else
+        $controller-> showGeneros();
+        break;
+    case 'nuevogenero':
+        $controller= new GeneroController();
+        $controller-> addGenero();
+        break;
+    case 'borrargenero':
+        $controller= new GeneroController();
+        $controller-> deleteGenero($partesURL[1]);
+        break;
+    case 'paraeditargenero':
+        $controller= new GeneroController();
+        $controller-> showToEditGenero($partesURL[1]);
+        break;
+    case 'editargenero':
+        $controller= new GeneroController();
+        $controller-> editGenero($partesURL[1]);
+        break;
         default:
-        echo "<h1>Error 404 - Page not found </h1>";
+        $controller= new PeliculaController();
+        $controller->showError("ERROR 404 PAGE NOT FOUND XD");
         break;
 }
 
