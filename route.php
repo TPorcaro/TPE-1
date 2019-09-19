@@ -1,5 +1,6 @@
 <?php
 require_once('controllers/pelicula.controller.php');
+require_once('controllers/genero.controller.php');
 
 if($_GET['accion']==''){
     $_GET['accion']= 'peliculas';
@@ -47,7 +48,7 @@ switch ($partesURL[0]){
         break;
     case 'paraeditargenero':
         $controller= new GeneroController();
-        $controller-> showToEditGenero($partesURL[1]);
+        $controller->toEditGenero($partesURL[1]);
         break;
     case 'editargenero':
         $controller= new GeneroController();

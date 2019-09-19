@@ -1,21 +1,16 @@
     {include 'templates/header.tpl'}   
  <ul>
-                {foreach $generos as $genero} 
-                <li>
-                Nombre: <a href="generos/{$genero->id_genero_fk}">{$genero->nombre}</a> 
-                ID: {$genero->id_genero_fk} 
-                <small><a href="borrargenero/{$genero->id_genero_fk}">ELIMINAR</a></small>
-                <small><a href="paraeditargenero/{$genero->id_genero_fk}">EDITAR</a></small>
-                </li>
-                {/foreach}
-        </ul>
+    <li>{$genero->nombre} 
+     ID: {$genero->id_genero}
+     </li>
+</ul>
         <div>
-        <form action="nuevogenero" method="POST">
+        <form action="../editargenero/{$genero->id_genero}" method="POST">
             <label>Nombre</label>
             <input type="text" name="nombre" value="{$genero->nombre}">
             <label>Imagen</label>
-            <input type="text" name="imagen" value="{$genero->imagen}">
-            <button type="submit">Guardar</button>
+            <input type="text" name="imagen" value="{$genero->img}">
+            <button type="submit">EDITAR</button>
         </form>
     </div>
     {include 'templates/footer.tpl'} 

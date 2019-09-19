@@ -2,10 +2,10 @@
  <ul>
                 {foreach $generos as $genero} 
                 <li>
-                Nombre: <a href="generos/{$genero->id_genero_fk}">{$genero->nombre}</a> 
-                ID: {$genero->id_genero_fk} 
-                <small><a href="borrargenero/{$genero->id_genero_fk}">ELIMINAR</a></small>
-                <small><a href="paraeditargenero/{$genero->id_genero_fk}">EDITAR</a></small>
+                Nombre: <a href="generos/{$genero->id_genero}">{$genero->nombre}</a> 
+                ID: {$genero->id_genero} 
+                <small><a href="borrargenero/{$genero->id_genero}">ELIMINAR</a></small>
+                <small><a href="paraeditargenero/{$genero->id_genero}">EDITAR</a></small>
                 </li>
                 {/foreach}
         </ul>

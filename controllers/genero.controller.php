@@ -17,7 +17,7 @@
         public function showGenero($idgenero){
             $genero= $this->model->get($idgenero);
             if($genero)
-            $this->view->showGenero($idgenero);
+            $this->view->showGenero($genero);
             else   
                 $this->view->showError('El id no pertenece a ningun genero');
         }
@@ -27,18 +27,19 @@
             if(!empty($nombre)){
                 $this->model->save($nombre, $imagen);
                 header('Location: generos');
+                //var_dump($nombre);
             }
             else
             $this->view->showError("No se pudo agregar genero, falta el nombre");
         }
         public function deleteGenero($idgenero){
             $this->model->delete($idgenero);
-            header('Location: generos');
+            header('Location: ../generos');
         }
         public function toEditGenero($idgenero){
             $genero = $this->model->get($idgenero);
             if($genero)
-            $this->view->toEditGenero($genero);
+            $this->view->showToEditGenero($genero);
             else
             $this->view->showError('La id no pertenece a ningun genero');
         }
