@@ -43,5 +43,7 @@
             else
             $this->view->showError('La id no pertenece a ningun genero');
         }
-
+        public function editPelicula(){
+            
+        }
     }

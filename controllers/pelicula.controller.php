@@ -53,8 +53,6 @@ class PeliculaController{
         $estreno = $_POST['estreno'];
         $imagen = $_POST['imagen'];
         $descripcion = $_POST['descripcion'];
-        $idpelinueva = $_POST['editar'];
-        var_dump($idpelicula, $idpelinueva);
         if (!empty($nombre) && (!empty($director))){
             $this->model->update($nombre, $duracion, $director, $estreno, $imagen, $descripcion, $idpelicula);
            header("Location: ../peliculas");
