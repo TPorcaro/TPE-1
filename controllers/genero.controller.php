@@ -23,10 +23,9 @@
         }
         public function addGenero(){
             $nombre= $_POST['nombre'];
-            $descripcion= $_POST['descripcion'];
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){
-                $this->model->save($nombre, $descripcion, $imagen);
+                $this->model->save($nombre, $imagen);
                 header('Location: generos');
             }
             else
@@ -43,7 +42,14 @@
             else
             $this->view->showError('La id no pertenece a ningun genero');
         }
-        public function editPelicula(){
-            
+        public function editGenero($idgenero){
+            $nombre= $_POST['nombre'];
+            $imagen= $_POST['imagen'];
+            if(!empty($nombre)){
+                $this->model->update($nombre, $imagen, $idgenero);
+                header("Location: ../generos");
+            }
+            else
+                $this->view->showError("Por favor  ingrese un nombre");
         }
     }
