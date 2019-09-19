@@ -52,4 +52,7 @@
             else
                 $this->view->showError("Por favor  ingrese un nombre");
         }
+        public function showError($msgerror){
+            $this->view->showError($msgerror);
+        }
     }
