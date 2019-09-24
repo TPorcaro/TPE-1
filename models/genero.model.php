@@ -8,6 +8,7 @@
         public function getAll(){
             $query = $this->db->prepare('SELECT * FROM genero ORDER BY id_genero ASC');
             $query->execute();
+            //var_dump($query->errorInfo()); Sirve para mirar errores SQL
             return $query->fetchAll(PDO::FETCH_OBJ);
         }
         public function get($idgenero){

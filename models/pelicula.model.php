@@ -9,7 +9,7 @@ class PeliculaModel{
     public function getAll(){
         $query = $this->db->prepare('SELECT * FROM peliculas ORDER BY id_pelicula ASC');
         $query->execute();
-        
+    
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
     public function get($idpelicula){

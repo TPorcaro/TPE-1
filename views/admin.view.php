@@ -1,17 +1,11 @@
 <?php
-
-    class GeneroView{
-        public function showGeneros($generos){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', 'Generos');
-            $smarty->assign('generos', $generos);
-            $smarty->display("templates/showGeneros.tpl");    
-        }
-        public function showGenero($genero){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', 'Genero '.$genero->nombre);
-            $smarty->assign('genero', $genero);
-            $smarty->display("templates/showGenero.tpl");
+    require_once('libs/Smarty.class.php');
+    class AdminView{
+        public function showToEdit($pelicula){
+            $smarty= new Smarty();
+            $smarty->assign('titulo', 'edit'.$pelicula->nombre);
+            $smarty->assign('pelicula', $pelicula);
+            $smarty->display('templates/showToEdit.tpl');
         }
         public function showToEditGenero($genero){
             $smarty= new Smarty();
