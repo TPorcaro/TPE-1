@@ -4,7 +4,7 @@
                     ID: {$pelicula->id_pelicula}
             </li>
             </ul>
-            <form action="../editarpelicula/{$pelicula->id_pelicula}" method="POST">
+            <form action="editarpelicula/{$pelicula->id_pelicula}" method="POST">
             <label>Nombre</label>
             <input type="text" name="nombre" value="{$pelicula->nombre}">
             <label>Duracion</label>

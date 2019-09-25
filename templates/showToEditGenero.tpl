@@ -5,7 +5,7 @@
      </li>
 </ul>
         <div>
-        <form action="../editargenero/{$genero->id_genero}" method="POST">
+        <form action="editargenero/{$genero->id_genero}" method="POST">
             <label>Nombre</label>
             <input type="text" name="nombre" value="{$genero->nombre}">
             <label>Imagen</label>

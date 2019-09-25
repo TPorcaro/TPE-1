@@ -12,7 +12,7 @@
 
         public function __construct(){
             $this->modelg= new GeneroModel();
-            $this->modelp = new PeliculaModel();
+            $this->modelp= new PeliculaModel();
             $this->viewa= new AdminView();
             $this->viewu= new UserView();
         }
@@ -55,7 +55,7 @@
         }
         public function deletePelicula($idpelicula) {
             $this->modelp->delete($idpelicula);
-            header("Location: ../peliculas");
+            header("Location: peliculas");
         }
         public function toEditPelicula($idpelicula){
             $pelicula = $this->modelp-> get($idpelicula);
@@ -73,7 +73,7 @@
             $descripcion = $_POST['descripcion'];
             if (!empty($nombre) && (!empty($director))){
                 $this->modelp->update($nombre, $duracion, $director, $estreno, $imagen, $descripcion, $idpelicula);
-               header("Location: ../peliculas");
+               header("Location: peliculas");
             } else
             $this->viewu->showError("Faltan datos obligatorios");
         }
@@ -82,14 +82,14 @@
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){
                 $this->modelg->save($nombre, $imagen);
-                //header('Location: generos');
+                header('Location: generos');
             }
             else
             $this->viewu->showError("No se pudo agregar genero, falta el nombre");
         }
         public function deleteGenero($idgenero){
             $this->modelg->delete($idgenero);
-            header('Location: ../generos');
+            header('Location: generos');
         }
         public function toEditGenero($idgenero){
             $genero = $this->modelg->get($idgenero);
@@ -103,7 +103,7 @@
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){
                 $this->modelg->update($nombre, $imagen, $idgenero);
-                header("Location: ../generos");
+                header("Location: generos");
             }
             else
                 $this->viewu->showError("Por favor  ingrese un nombre");

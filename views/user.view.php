@@ -2,34 +2,35 @@
     require_once('libs/Smarty.class.php');
     class UserView {
 
+        private $smarty;
+        public function __construct(){
+            $this->smarty = new Smarty();
+            $this->smarty->assign('basehref', BASE_URL);
+        }
+
         public function showPeliculas($peliculas){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', 'All Movies');
-            $smarty->assign('peliculas', $peliculas);
-            $smarty->display('templates/showPeliculas.tpl');
+            $this->smarty->assign('titulo', 'All Movies');
+            $this->smarty->assign('peliculas', $peliculas);
+            $this->smarty->display('templates/showPeliculas.tpl');
         }
         public function showPelicula($pelicula){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', $pelicula->nombre);
-            $smarty->assign('pelicula', $pelicula);
-            $smarty->display('templates/showPelicula.tpl');
+            $this->smarty->assign('titulo', $pelicula->nombre);
+            $this->smarty->assign('pelicula', $pelicula);
+            $this->smarty->display('templates/showPelicula.tpl');
         }
         public function showGeneros($generos){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', 'Generos');
-            $smarty->assign('generos', $generos);
-            $smarty->display("templates/showGeneros.tpl");    
+            $this->smarty->assign('titulo', 'Generos');
+            $this->smarty->assign('generos', $generos);
+            $this->smarty->display("templates/showGeneros.tpl");    
         }
         public function showGenero($genero){
-            $smarty = new Smarty();
-            $smarty->assign('titulo', 'Genero '.$genero->nombre);
-            $smarty->assign('genero', $genero);
-            $smarty->display("templates/showGenero.tpl");
+            $this->smarty->assign('titulo', 'Genero '.$genero->nombre);
+            $this->smarty->assign('genero', $genero);
+            $this->smarty->display("templates/showGenero.tpl");
         }
         public function showError($msgError) {
-            $smarty= new Smarty();
-            $smarty->assign('titulo', 'ERROR');
-            $smarty->assign('msgError', $msgError);
-            $smarty->display('templates/showError.tpl');
+            $this->smarty->assign('titulo', 'ERROR');
+            $this->smarty->assign('msgError', $msgError);
+            $this->smarty->display('templates/showError.tpl');
         }
     }

@@ -1,22 +1,26 @@
 <?php
     require_once('libs/Smarty.class.php');
     class AdminView{
+
+        private $smarty;
+        public function __construct(){
+            $this->smarty= new Smarty();
+            $this->smarty->assign('basehref', BASE_URL);
+        }
+
         public function showToEdit($pelicula){
-            $smarty= new Smarty();
-            $smarty->assign('titulo', 'edit'.$pelicula->nombre);
-            $smarty->assign('pelicula', $pelicula);
-            $smarty->display('templates/showToEdit.tpl');
+            $this->smarty->assign('titulo', 'edit'.$pelicula->nombre);
+            $this->smarty->assign('pelicula', $pelicula);
+            $this->smarty->display('templates/showToEdit.tpl');
         }
         public function showToEditGenero($genero){
-            $smarty= new Smarty();
-            $smarty->assign('titulo', 'edit'.$genero->nombre);
-            $smarty->assign('genero', $genero);
-            $smarty->display('templates/showToEditGenero.tpl');
+            $this->smarty->assign('titulo', 'edit'.$genero->nombre);
+            $this->smarty->assign('genero', $genero);
+            $this->smarty->display('templates/showToEditGenero.tpl');
         }
         public function showError($msgerror){
-            $smarty = new Smarty();
-            $smarty->assign("titulo", "ERROR");
-            $smarty->assign("msgError", $msgerror);
-            $smarty->display("templates/showError.tpl");
+            $this->smarty->assign("titulo", "ERROR");
+            $this->smarty->assign("msgError", $msgerror);
+            $this->smarty->display("templates/showError.tpl");
         }
     }
