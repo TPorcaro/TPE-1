@@ -89,7 +89,7 @@
         }
         public function deleteGenero($idgenero){
             $this->modelg->delete($idgenero);
-            header('Location: generos');
+            header('Location: ../generos');
         }
         public function toEditGenero($idgenero){
             $genero = $this->modelg->get($idgenero);

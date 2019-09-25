@@ -9,18 +9,25 @@
             <title>{$titulo}</title>
         </head>
         <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <nav class="navbar navbar-expand-lg navbar-warning bg-warning">
   <a class="navbar-brand" href="#">Qevana</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="peliculas">Peliculas<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="peliculas">Peliculas</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="generos">Generos<span class="sr-only">(current)</span></a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="generos" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Generos
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          {foreach $generos as $genero}
+            <a class="dropdown-item" href="generos/{$genero->id_genero}">{$genero->nombre}</a>
+          {/foreach}
+        </div>
       </li>
     </ul>
   </div>

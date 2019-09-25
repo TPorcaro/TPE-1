@@ -15,12 +15,14 @@
         }
         public function showPeliculas(){
             $peliculas = $this->modelp->getAll();
-            $this->view->showPeliculas($peliculas);
+            $generos= $this->modelg->getAll();
+            $this->view->showPeliculas($peliculas, $generos);
         }
         public function showPelicula($idpelicula){
             $pelicula = $this->modelp->get($idpelicula);
+            $generos = $this->modelg->getAll();
             if($pelicula)
-                $this->view->showPelicula($pelicula);
+                $this->view->showPelicula($pelicula, $generos);
             else
                 $this->view->showError('La id no pertenece a ninguna pelicula');
         }
@@ -32,8 +34,9 @@
         }
         public function showGenero($idgenero){
             $genero= $this->modelg->get($idgenero);
+            $generos= $this->modelg->getAll();
             if($genero)
-            $this->view->showGenero($genero);
+            $this->view->showGenero($genero, $generos);
             else   
                 $this->view->showError('El id no pertenece a ningun genero');
         }
