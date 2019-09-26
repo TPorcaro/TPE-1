@@ -25,10 +25,12 @@
             $this->smarty->assign('generos', $generos);
             $this->smarty->display("templates/showGeneros.tpl");    
         }
-        public function showGenero($genero, $generos){
+        public function showGenero($genero, $generos, $peliscongenero){
             $this->smarty->assign('titulo', 'Genero '.$genero->nombre);
             $this->smarty->assign('generos', $generos);
             $this->smarty->assign('genero', $genero);
+            $this->smarty->assign('peliscongenero', $peliscongenero);
+
             $this->smarty->display("templates/showGenero.tpl");
         }
         public function showError($msgError) {

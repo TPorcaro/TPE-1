@@ -17,6 +17,11 @@
             <input type="text" name="imagen" value="{$pelicula->imagen}">
             <label>Descripcion</label>
             <input type="text" name="descripcion" value="{$pelicula->descripcion}">
+            <select name="genero" id="genero">
+            {foreach $generos as $genero}
+                <option value="{$genero->id_genero}" name="genero">{$genero->nombre}</option>
+            {/foreach}
+            </select>
             <button type="submit" name="editar" value="{$pelicula->id_pelicula}">EDITAR</button>
             </form>
  {include 'templates/footer.tpl'}

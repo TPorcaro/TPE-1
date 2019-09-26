@@ -47,20 +47,23 @@
             $estreno = $_POST['estreno'];
             $imagen = $_POST['imagen'];
             $descripcion = $_POST['descripcion'];
-            if (!empty($nombre) && (!empty($director))){
-                $this->modelp->save($nombre, $duracion, $director, $estreno, $imagen, $descripcion);
+            $id_genero = $_POST['genero']; //llega NULL
+            var_dump($id_genero);
+            if (!empty($nombre) && (!empty($director)) && (!empty($id_genero))){
+                $this->modelp->save($nombre, $duracion, $director, $estreno, $imagen, $descripcion, $id_genero);
                 header("Location: peliculas");
             } else
             $this->viewa->showError("Faltan datos obligatorios");
         }
         public function deletePelicula($idpelicula) {
             $this->modelp->delete($idpelicula);
-            header("Location: peliculas");
+            header("Location: ../peliculas");
         }
         public function toEditPelicula($idpelicula){
-            $pelicula = $this->modelp-> get($idpelicula);
+            $pelicula = $this->modelp->get($idpelicula);
+            $generos = $this->modelg->getAll();
             if($pelicula)
-                $this->viewa->showToEdit($pelicula);
+                $this->viewa->showToEdit($pelicula, $generos);
             else
                 $this->viewu->showError('La id no pertenece a ninguna pelicula');
         }
@@ -71,9 +74,10 @@
             $estreno = $_POST['estreno'];
             $imagen = $_POST['imagen'];
             $descripcion = $_POST['descripcion'];
+            $id_genero = $_POST['genero'];
             if (!empty($nombre) && (!empty($director))){
-                $this->modelp->update($nombre, $duracion, $director, $estreno, $imagen, $descripcion, $idpelicula);
-               header("Location: peliculas");
+                $this->modelp->update($nombre, $duracion, $director, $estreno, $imagen, $descripcion, $id_genero, $idpelicula);
+               header("Location: ../peliculas");
             } else
             $this->viewu->showError("Faltan datos obligatorios");
         }
@@ -93,8 +97,9 @@
         }
         public function toEditGenero($idgenero){
             $genero = $this->modelg->get($idgenero);
+            $generos = $this->modelg->getAll();
             if($genero)
-            $this->viewa->showToEditGenero($genero);
+            $this->viewa->showToEditGenero($genero, $generos);
             else
             $this->viewu->showError('La id no pertenece a ningun genero');
         }
@@ -103,12 +108,13 @@
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){
                 $this->modelg->update($nombre, $imagen, $idgenero);
-                header("Location: generos");
+                header("Location: ../generos");
             }
             else
                 $this->viewu->showError("Por favor  ingrese un nombre");
         }
         public function showError($msgerror){
-            $this->viewu->showError($msgerror);
+            $generos = $this->modelg->getAll();
+            $this->viewu->showError($msgerror,$generos);
         }
     }

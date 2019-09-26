@@ -35,8 +35,9 @@
         public function showGenero($idgenero){
             $genero= $this->modelg->get($idgenero);
             $generos= $this->modelg->getAll();
+            $peliscongenero= $this->modelp->getPeliculaGenero($idgenero);
             if($genero)
-            $this->view->showGenero($genero, $generos);
+            $this->view->showGenero($genero, $generos, $peliscongenero);
             else   
                 $this->view->showError('El id no pertenece a ningun genero');
         }

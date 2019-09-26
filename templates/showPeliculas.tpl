@@ -23,9 +23,10 @@
             <input type="text" name="imagen">
             <label>Descripcion</label>
             <input type="text" name="descripcion">
-            <select>
+            <select name="genero">
+            <option selected></option>
             {foreach $generos as $genero}
-                <option value="{$genero->id_genero}" name="genero">{$genero->nombre}</option>
+                <option value="{$genero->id_genero}">{$genero->nombre}</option>
             {/foreach}
             </select>
             <button type="submit">Guardar</button>

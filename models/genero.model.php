@@ -17,7 +17,7 @@
             $query->execute(array($idgenero));
             return $query->fetch(PDO::FETCH_OBJ);
         }
-        public function save($nombre, $imagen){ var_dump($nombre);
+        public function save($nombre, $imagen){
             $query = $this->db->prepare('INSERT INTO genero(nombre, img) VALUES (?, ?)');
             $query->execute([$nombre, $imagen]);
         }
