@@ -16,6 +16,14 @@
             $this->viewa= new AdminView();
             $this->viewu= new UserView();
         }
+        private function checkLoggedIn() {
+            session_start();
+            if (!isset($_SESSION['ID_USER'])) {
+                header('Location: ' . LOGIN);
+                die();
+            }
+                
+        }
         public function showPeliculas(){
             $peliculas = $this->modelp->getAll();
             $this->viewu->showPeliculas($peliculas);
@@ -40,7 +48,7 @@
                 $this->viewu->showError('El id no pertenece a ningun genero');
         }
         public function addPelicula(){
-
+            $this->checkLoggedIn();
             $nombre = $_POST['nombre'];
             $duracion = $_POST['duracion'];
             $director = $_POST['director'];
@@ -56,10 +64,12 @@
             $this->viewa->showError("Faltan datos obligatorios");
         }
         public function deletePelicula($idpelicula) {
+            $this->checkLoggedIn();
             $this->modelp->delete($idpelicula);
             header("Location: ../peliculas");
         }
         public function toEditPelicula($idpelicula){
+            $this->checkLoggedIn();
             $pelicula = $this->modelp->get($idpelicula);
             $generos = $this->modelg->getAll();
             if($pelicula)
@@ -68,6 +78,7 @@
                 $this->viewu->showError('La id no pertenece a ninguna pelicula');
         }
         public function editPelicula($idpelicula){
+            $this->checkLoggedIn();
             $nombre = $_POST['nombre'];
             $duracion = $_POST['duracion'];
             $director = $_POST['director'];
@@ -82,6 +93,7 @@
             $this->viewu->showError("Faltan datos obligatorios");
         }
         public function addGenero(){
+            $this->checkLoggedIn();
             $nombre= $_POST['nombre'];
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){
@@ -92,10 +104,12 @@
             $this->viewu->showError("No se pudo agregar genero, falta el nombre");
         }
         public function deleteGenero($idgenero){
+            $this->checkLoggedIn();
             $this->modelg->delete($idgenero);
             header('Location: ../generos');
         }
         public function toEditGenero($idgenero){
+            $this->checkLoggedIn();
             $genero = $this->modelg->get($idgenero);
             $generos = $this->modelg->getAll();
             if($genero)
@@ -104,6 +118,7 @@
             $this->viewu->showError('La id no pertenece a ningun genero');
         }
         public function editGenero($idgenero){
+            $this->checkLoggedIn();
             $nombre= $_POST['nombre'];
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){

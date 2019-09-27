@@ -29,6 +29,9 @@
           {/foreach}
         </div>
       </li>
+      <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link" href="logout">LOGOUT</a>
+        </div>
     </ul>
   </div>
 </nav>

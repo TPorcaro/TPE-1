@@ -1,15 +1,28 @@
 <?php
 require_once('controllers/admin.controller.php');
 require_once('controllers/user.controller.php');
+require_once('controllers/login.controller.php');
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
-
+define("LOGIN", BASE_URL . 'login');
 if($_GET['accion']==''){
     $_GET['accion']= 'generos';
 }
 $partesURL = explode('/', $_GET['accion']);
 
 switch ($partesURL[0]){
+    case 'login':
+        $controller = new LoginController();
+        $controller->showLogin();
+        break;
+    case 'verify':
+        $controller = new LoginController();
+        $controller->verifyUser();
+        break;
+    case 'logout':
+        $controller = new LoginController();
+        $controller->logout();
+        break;
     case 'peliculas':
         $controller = new UserController();
         if(isset($partesURL[1]))
