@@ -29,9 +29,15 @@
           {/foreach}
         </div>
       </li>
-      <div class="navbar-nav mr-auto">
-            <a class="nav-item nav-link" href="logout">LOGOUT</a>
-        </div>
     </ul>
+     {if (isset($_SESSION['id_user']))} {* Nunca le llega el parametro, cambiar por un funcion que sepa si esta log o no*}
+     <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="logout">LOGOUT</a>
+        </div> 
+      {else}
+         <div class="navbar-nav ml-auto">
+            <a class="nav-item nav-link" href="login">LOGIN</a>
+        </div> 
+      {/if}
   </div>
 </nav>

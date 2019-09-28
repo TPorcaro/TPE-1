@@ -24,15 +24,18 @@ include_once('models/genero.model.php');
             $password = $_POST['password'];
 
             $user = $this->model->getByUsername($username);
-            var_dump($user);
-            if (isset($user) && password_verify($password, $user->password)) {
-                session_start();  
-                $_SESSION['user'] = $username;
-                $_SESSION['id_user'] = $user->id_user;
-                header('Location : ../generos');
-            } else {
-            $this->view->showLogin($generos, "Login incorrecto");
-        }
+            if (!empty($username) && !empty($password)) {
+                if (isset($user) && password_verify($password, $user->password)) {
+                    session_start();  
+                    $_SESSION['user'] = $username;
+                    $_SESSION['id_user'] = $user->id_user;
+                    header('Location: generos');
+                } else {
+                $this->view->showLogin($generos, "Login incorrecto");
+                }
+            }
+                else
+                    $this->view->showLogin($generos, "Campos vacios");
 
         }
         public function logout() {

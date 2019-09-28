@@ -18,7 +18,7 @@
         }
         private function checkLoggedIn() {
             session_start();
-            if (!isset($_SESSION['ID_USER'])) {
+            if (!isset($_SESSION['id_user'])) {
                 header('Location: ' . LOGIN);
                 die();
             }
