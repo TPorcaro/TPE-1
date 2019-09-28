@@ -24,7 +24,7 @@
             <label>Descripcion</label>
             <input type="text" name="descripcion">
             <select name="genero">
-            <option selected></option>
+            <option selected ></option>
             {foreach $generos as $genero}
                 <option value="{$genero->id_genero}">{$genero->nombre}</option>
             {/foreach}
