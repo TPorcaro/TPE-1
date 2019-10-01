@@ -7,12 +7,12 @@
             <form action="editarpelicula/{$pelicula->id_pelicula}" method="POST">
             <label>Nombre</label>
             <input type="text" name="nombre" value="{$pelicula->nombre}">
-            <label>Duracion</label>
-            <input type="text" name="duracion" value="{$pelicula->duracion}">
             <label>Director</label>
             <input type="text" name="director" value="{$pelicula->director}">
             <label>Estreno</label>
             <input type="text" name="estreno" value="{$pelicula->estreno}">
+            <label>Duracion</label>
+            <input type="text" name="duracion" value="{$pelicula->duracion}">
             <label>Imagen</label>
             <input type="text" name="imagen" value="{$pelicula->imagen}">
             <label>Descripcion</label>

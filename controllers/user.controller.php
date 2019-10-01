@@ -19,7 +19,7 @@
             $this->view->showPeliculas($peliculas, $generos);
         }
         public function showPelicula($idpelicula){
-            $pelicula = $this->modelp->get($idpelicula);
+            $pelicula = $this->modelp->getJoin($idpelicula);
             $generos = $this->modelg->getAll();
             if($pelicula)
                 $this->view->showPelicula($pelicula, $generos);

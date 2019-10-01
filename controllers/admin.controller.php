@@ -58,7 +58,7 @@
             $id_genero = $_POST['genero']; //llega NULL
             var_dump($id_genero);
             if (!empty($nombre) && (!empty($director)) && (!empty($id_genero))){
-                $this->modelp->save($nombre, $duracion, $director, $estreno, $imagen, $descripcion, $id_genero);
+                $this->modelp->save($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero);
                 header("Location: peliculas");
             } else
             $this->viewa->showError("Faltan datos obligatorios");

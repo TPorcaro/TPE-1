@@ -1,7 +1,23 @@
 {include 'templates/header.tpl'}  
 <ul>
-    <li>{$pelicula->nombre} 
-     ID: {$pelicula->id_pelicula}
+    {$pelicula->nombre} 
+    <li>
+     Director: {$pelicula->director}
+     </li>
+     <li>
+     Estreno: {$pelicula->estreno}
+     </li>
+     <li>
+     Duracion: {$pelicula->duracion}
+     </li>
+     <li>
+     Imagen: {$pelicula->imagen}
+     </li>
+     <li>
+     Descripcion: {$pelicula->descripcion}
+     </li>
+     <li>
+     Genero: {$pelicula->genero}
      </li>
 </ul>
 {include 'templates/footer.tpl'} 

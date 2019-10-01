@@ -74,4 +74,3 @@ switch ($partesURL[0]){
         $controller->showError("ERROR 404 PAGE NOT FOUND XD");
         break;
 }
-

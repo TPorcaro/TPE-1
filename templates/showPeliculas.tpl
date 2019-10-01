@@ -13,12 +13,12 @@
         <form action="nuevapelicula" method="POST">
             <label>Nombre</label>
             <input type="text" name="nombre">
-            <label>Duracion</label>
-            <input type="text" name="duracion">
             <label>Director</label>
             <input type="text" name="director">
             <label>Estreno</label>
             <input type="text" name="estreno">
+            <label>Duracion</label>
+            <input type="text" name="duracion">
             <label>Imagen</label>
             <input type="text" name="imagen">
             <label>Descripcion</label>
