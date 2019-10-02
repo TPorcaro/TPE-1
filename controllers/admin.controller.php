@@ -21,7 +21,7 @@
         }
                 
         public function showPeliculas(){
-            $peliculas = $this->modelp->getAll();
+            $peliculas = $this->modelp->getJoinAll();
             $this->viewu->showPeliculas($peliculas);
         }
         public function showPelicula($idpelicula){
@@ -34,7 +34,6 @@
         public function showGeneros(){
             $generos= $this->modelg->getAll();
             $this->viewu->showGeneros($generos);
-            var_dump($genero);
         }
         public function showGenero($idgenero){
             $genero= $this->modelg->get($idgenero);
@@ -45,20 +44,19 @@
         }
         public function addPelicula(){
             $this->authHelper->checkLogin();
-
+            $generos= $this->modelg->getAll();
             $nombre = $_POST['nombre'];
             $duracion = $_POST['duracion'];
             $director = $_POST['director'];
             $estreno = $_POST['estreno'];
             $imagen = $_POST['imagen'];
             $descripcion = $_POST['descripcion'];
-            $id_genero = $_POST['genero']; //llega NULL
-            var_dump($id_genero);
+            $id_genero = $_POST['genero'];
             if (!empty($nombre) && (!empty($director)) && (!empty($id_genero))){
                 $this->modelp->save($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero);
                 header("Location: peliculas");
             } else
-            $this->viewa->showError("Faltan datos obligatorios");
+            $this->viewa->showError("Faltan datos obligatorios", $generos);
         }
         public function deletePelicula($idpelicula) {
             $this->authHelper->checkLogin();

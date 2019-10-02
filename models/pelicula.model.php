@@ -25,6 +25,13 @@ class PeliculaModel{
         
         return $query->fetch(PDO::FETCH_OBJ);
     }
+    public function getJoinAll(){
+        $query = $this->db->prepare('SELECT peliculas.id_pelicula, peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion, peliculas.imagen,
+        peliculas.descripcion, genero.nombre AS genero FROM peliculas JOIN genero ON peliculas.id_genero_fk=genero.id_genero');
+        $query->execute();
+        
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
     public function getPeliculaGenero($id_genero){
         $query= $this->db->prepare('SELECT * FROM peliculas WHERE id_genero_fk = ?');
         $query-> execute([$id_genero]);

@@ -3,7 +3,7 @@
                 {foreach $peliculas as $pelicula} 
                 <li>
                 Nombre: <a href="peliculas/{$pelicula->id_pelicula}">{$pelicula->nombre}</a> 
-                ID: {$pelicula->id_pelicula} 
+                Genero: {$pelicula->genero} 
                 <small><a href="borrarpelicula/{$pelicula->id_pelicula}">ELIMINAR</a></small>
                 <small><a href="paraeditar/{$pelicula->id_pelicula}">EDITAR</a></small>
                 </li>

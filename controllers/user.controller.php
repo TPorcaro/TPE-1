@@ -14,7 +14,7 @@
             $this->view = new UserView();
         }
         public function showPeliculas(){
-            $peliculas = $this->modelp->getAll();
+            $peliculas = $this->modelp->getJoinAll();
             $generos= $this->modelg->getAll();
             $this->view->showPeliculas($peliculas, $generos);
         }

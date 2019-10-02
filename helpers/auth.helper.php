@@ -16,7 +16,6 @@
         }
 
         public function checkLogin(){
-            session_start();
             if(!isset($_SESSION['ID_USER'])){
                 header('Location: ' . LOGIN);
                 die();
