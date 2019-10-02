@@ -1,11 +1,15 @@
 <?php
     require_once('libs/Smarty.class.php');
+    require_once('helpers/auth.helper.php');
     class AdminView{
 
         private $smarty;
         public function __construct(){
+            $authHelper = new AuthHelper();
+            $userName = $authHelper->getLoggedUsername();
             $this->smarty= new Smarty();
             $this->smarty->assign('basehref', BASE_URL);
+            $this->smarty->assign('userName', $userName); 
         }
 
         public function showToEdit($pelicula, $generos){
