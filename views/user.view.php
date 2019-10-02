@@ -6,11 +6,11 @@
         private $smarty;
         public function __construct(){
             $authHelper = new AuthHelper();
+            $authHelper->checkLogin();
             $userName = $authHelper->getLoggedUsername();
             $this->smarty = new Smarty();
             $this->smarty->assign('basehref', BASE_URL);
             $this->smarty->assign('userName', $userName);
-            var_dump($userName);
         }
 
         public function showPeliculas($peliculas, $generos){

@@ -31,7 +31,7 @@
       </li>
     </ul>
 
-     {if (isset($userName))} {* Nunca le llega el parametro, cambiar por un funcion que sepa si esta log o no*}
+     {if $userName} {* Nunca le llega el parametro, cambiar por un funcion que sepa si esta log o no*}
         <div class="navbar-nav ml-auto">
             <span class="navbar-text">{$userName}</span>
             <a class="nav-item nav-link" href="logout">LOGOUT</a>

@@ -23,14 +23,13 @@
             }
         }
         public function getLoggedUsername(){
-            if(isset($_SESSION['USERNAME'])){
-                if(session_status() != PHP_SESSION_ACTIVE){
-                    session_start();
+            if(session_status() != PHP_SESSION_ACTIVE)
+                session_start();
+            if(!isset($_SESSION['ID_USER'])){
+                    return NULL;
                 }
                 return $_SESSION['USERNAME'];
-            }
-            else{
-                return null;
-            }
+            
+
         }
     }
