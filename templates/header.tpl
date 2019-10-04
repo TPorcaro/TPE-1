@@ -26,7 +26,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           {foreach $generos as $genero}
-            <a class="dropdown-item" href="generos/{$genero->id_genero}">{$genero->nombre}</a>
+            <a class="dropdown-item" href="generos/{$genero->id_genero}"><img class="img-genero" src="{$genero->img}" alt=" "> {$genero->nombre}</a>
           {/foreach}
         </div>
       </li>

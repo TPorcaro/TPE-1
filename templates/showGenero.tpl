@@ -1,6 +1,6 @@
 {include 'templates/header.tpl'}  
 <ul>
-    <li>{$genero->nombre} 
+    <li><img class="img-genero" src="{$genero->img}" alt=" "> {$genero->nombre} 
         <ul>
             {foreach $peliscongenero as $pelicongenero }
                 <li>
