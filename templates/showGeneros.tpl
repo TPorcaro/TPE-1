@@ -4,11 +4,14 @@
                 <li>
                 Nombre: <a href="generos/{$genero->id_genero}">{$genero->nombre}</a> 
                 ID: {$genero->id_genero} 
+                {if isset($userName)}
                 <small><a href="borrargenero/{$genero->id_genero}">ELIMINAR</a></small>
                 <small><a href="paraeditargenero/{$genero->id_genero}">EDITAR</a></small>
+                {/if}
                 </li>
                 {/foreach}
         </ul>
+        {if isset($userName)}
         <div>
         <form action="nuevogenero" method="POST">
             <label>Nombre</label>
@@ -18,4 +21,5 @@
             <button type="submit">Guardar</button>
         </form>
     </div>
+    {/if}
     {include 'templates/footer.tpl'} 
