@@ -11,7 +11,7 @@
      Duracion: {$pelicula->duracion}
      </li>
      <li>
-     Imagen: {$pelicula->imagen}
+     Imagen: <img class="img-reduc" src="{$pelicula->imagen}" alt="Matrics-img">
      </li>
      <li>
      Descripcion: {$pelicula->descripcion}
