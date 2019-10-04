@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2019 a las 19:47:28
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Tiempo de generación: 04-10-2019 a las 22:51:45
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -35,6 +35,15 @@ CREATE TABLE `genero` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Volcado de datos para la tabla `genero`
+--
+
+INSERT INTO `genero` (`id_genero`, `nombre`, `img`) VALUES
+(4, 'Terror', 'https://www.stickpng.com/assets/thumbs/586fc3d83817baaba563b405.png'),
+(5, 'Accion', 'https://images.vexels.com/media/users/3/138429/isolated/preview/68c5ed5842612a473d6dbd936a0467c1-boxing-kickboxing-fight-silhouette-by-vexels.png'),
+(6, 'Comedia', 'https://pngimage.net/wp-content/uploads/2018/05/comedia-png-3.png');
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -52,7 +61,7 @@ ALTER TABLE `genero`
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

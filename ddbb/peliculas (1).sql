@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2019 a las 19:46:32
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.8
+-- Tiempo de generación: 04-10-2019 a las 22:52:04
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -44,7 +44,9 @@ CREATE TABLE `peliculas` (
 --
 
 INSERT INTO `peliculas` (`id_pelicula`, `nombre`, `director`, `estreno`, `duracion`, `imagen`, `descripcion`, `id_genero_fk`) VALUES
-(15, 'Jason', 'Nose', '30 de octubre de 1982', '123m', 'asdasd', 'asdasd', 0);
+(23, 'Jack', 'Un director', '', '', '', '', 5),
+(24, 'peli', 'qw', '', '', '', '', 4),
+(25, 'Matrics', 'Neo Pistea', '4/4/1996', 'Como 3 hora\'', 'https://images-na.ssl-images-amazon.com/images/I/51Q7Psa2ufL._AC_.jpg', 'Neo se pelea con un monton de Dukis', 5);
 
 --
 -- Índices para tablas volcadas
@@ -54,7 +56,8 @@ INSERT INTO `peliculas` (`id_pelicula`, `nombre`, `director`, `estreno`, `duraci
 -- Indices de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  ADD PRIMARY KEY (`id_pelicula`);
+  ADD PRIMARY KEY (`id_pelicula`),
+  ADD KEY `id_genero_fk` (`id_genero_fk`) USING BTREE;
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -64,7 +67,17 @@ ALTER TABLE `peliculas`
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_pelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `peliculas`
+--
+ALTER TABLE `peliculas`
+  ADD CONSTRAINT `peliculas_ibfk_1` FOREIGN KEY (`id_genero_fk`) REFERENCES `genero` (`id_genero`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
