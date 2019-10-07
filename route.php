@@ -2,13 +2,39 @@
 require_once('controllers/admin.controller.php');
 require_once('controllers/user.controller.php');
 require_once('controllers/login.controller.php');
+require_once('Router.php');
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
 define("LOGIN", BASE_URL . 'login');
 if($_GET['accion']==''){
     $_GET['accion']= 'generos';
 }
-$partesURL = explode('/', $_GET['accion']);
+$r= new Router();
+
+$r->addRoute("login","GET","LoginController", "showLogin");
+$r->addRoute("verify","POST","LoginController", "verifyUser");
+$r->addRoute("logout","GET","LoginController", "logout");
+$r->addRoute("peliculas","GET","UserController", "showPeliculas");
+$r->addRoute("peliculas/:ID","GET","UserController", "showPelicula");
+$r->addRoute("nuevapelicula","POST","AdminController", "addPelicula");
+$r->addRoute("borrarpelicula/:ID","GET","AdminController", "deletePelicula");
+$r->addRoute("paraeditar/:ID","GET","AdminController", "ToEditPelicula");
+$r->addRoute("editarpelicula/:ID","POST","AdminController", "editPelicula");
+$r->addRoute("generos","GET","UserController", "showGeneros");
+$r->addRoute("generos/:ID","GET","UserController", "showGenero");
+$r->addRoute("nuevogenero","POST","AdminController", "addGenero");
+$r->addRoute("borrargenero/:ID","GET","AdminController", "deleteGenero");
+$r->addRoute("paraeditargenero/:ID","GET","AdminController", "toEditGenero");
+$r->addRoute("editargenero/:ID","POST","AdminController", "editGenero");
+
+$r->setDefaultRoute("UserController", "showGeneros");
+
+$r->route($_GET['accion'], $_SERVER['REQUEST_METHOD']); 
+
+
+
+
+/*$partesURL = explode('/', $_GET['accion']);
 
 switch ($partesURL[0]){
     case 'login':
@@ -73,4 +99,4 @@ switch ($partesURL[0]){
         $controller= new UserController();
         $controller->showError("ERROR 404 PAGE NOT FOUND XD");
         break;
-}
+}*/

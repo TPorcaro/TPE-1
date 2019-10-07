@@ -18,7 +18,8 @@
             $generos= $this->modelg->getAll();
             $this->view->showPeliculas($peliculas, $generos);
         }
-        public function showPelicula($idpelicula){
+        public function showPelicula($params = NULL){
+            $idpelicula = $params[':ID'];
             $pelicula = $this->modelp->getJoin($idpelicula);
             $generos = $this->modelg->getAll();
             if($pelicula)
@@ -32,7 +33,8 @@
             $this->view->showGeneros($generos);
             var_dump($generos);
         }
-        public function showGenero($idgenero){
+        public function showGenero($params = NULL){
+            $idgenero = $params[':ID'];
             $genero= $this->modelg->get($idgenero);
             $generos= $this->modelg->getAll();
             $peliscongenero= $this->modelp->getPeliculaGenero($idgenero);

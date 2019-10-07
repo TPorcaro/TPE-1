@@ -19,29 +19,6 @@
             $this->viewa= new AdminView();
             $this->viewu= new UserView();
         }
-                
-        public function showPeliculas(){
-            $peliculas = $this->modelp->getJoinAll();
-            $this->viewu->showPeliculas($peliculas);
-        }
-        public function showPelicula($idpelicula){
-            $pelicula = $this->modelp->get($idpelicula);
-            if($pelicula)
-                $this->viewu->showPelicula($pelicula);
-            else
-                $this->viewu->showError('La id no pertenece a ninguna pelicula');
-        }
-        public function showGeneros(){
-            $generos= $this->modelg->getAll();
-            $this->viewu->showGeneros($generos);
-        }
-        public function showGenero($idgenero){
-            $genero= $this->modelg->get($idgenero);
-            if($genero)
-            $this->viewu->showGenero($genero);
-            else   
-                $this->viewu->showError('El id no pertenece a ningun genero');
-        }
         public function addPelicula(){
             $this->authHelper->checkLogin();
             $generos= $this->modelg->getAll();
@@ -58,21 +35,26 @@
             } else
             $this->viewa->showError("Faltan datos obligatorios", $generos);
         }
-        public function deletePelicula($idpelicula) {
+        public function deletePelicula($params = NULL) {
+            $idpelicula = $params[':ID'];
             $this->authHelper->checkLogin();
             $this->modelp->delete($idpelicula);
             header("Location: ../peliculas");
         }
-        public function toEditPelicula($idpelicula){
+        public function toEditPelicula($params = NULL){
+            $idpelicula = $params[':ID'];
             $this->authHelper->checkLogin();
             $pelicula = $this->modelp->get($idpelicula);
             $generos = $this->modelg->getAll();
-            if($pelicula)
+            
+            if($pelicula){
                 $this->viewa->showToEdit($pelicula, $generos);
+            }
             else
                 $this->viewu->showError('La id no pertenece a ninguna pelicula');
         }
-        public function editPelicula($idpelicula){
+        public function editPelicula($params = NULL){
+            $idpelicula = $params[':ID'];
             $this->authHelper->checkLogin();
             $nombre = $_POST['nombre'];
             $duracion = $_POST['duracion'];
@@ -83,7 +65,7 @@
             $id_genero = $_POST['genero'];
             if (!empty($nombre) && (!empty($director))){
                 $this->modelp->update($nombre, $duracion, $director, $estreno, $imagen, $descripcion, $id_genero, $idpelicula);
-               header("Location: ../peliculas");
+                header("Location: ../peliculas");
             } else
             $this->viewu->showError("Faltan datos obligatorios");
         }
@@ -98,12 +80,14 @@
             else
             $this->viewu->showError("No se pudo agregar genero, falta el nombre");
         }
-        public function deleteGenero($idgenero){
+        public function deleteGenero($params = NULL){
+            $idgenero = $params[':ID'];
             $this->authHelper->checkLogin();;
             $this->modelg->delete($idgenero);
             header('Location: ../generos');
         }
-        public function toEditGenero($idgenero){
+        public function toEditGenero($params = NULL){
+            $idgenero = $params[':ID'];
             $this->authHelper->checkLogin();
             $genero = $this->modelg->get($idgenero);
             $generos = $this->modelg->getAll();
@@ -112,13 +96,14 @@
             else
             $this->viewu->showError('La id no pertenece a ningun genero');
         }
-        public function editGenero($idgenero){
+        public function editGenero($params = NULL){
+            $idgenero = $params[':ID'];
             $this->authHelper->checkLogin();
             $nombre= $_POST['nombre'];
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){
                 $this->modelg->update($nombre, $imagen, $idgenero);
-                header("Location: ../generos");
+              header("Location: ../generos");
             }
             else
                 $this->viewu->showError("Por favor  ingrese un nombre");
