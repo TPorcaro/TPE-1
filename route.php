@@ -12,6 +12,8 @@ if($_GET['accion']==''){
 $r= new Router();
 
 $r->addRoute("login","GET","LoginController", "showLogin");
+$r->addRoute("register","GET","LoginController", "showRegister");
+$r->addRoute("verify_register","POST","LoginController", "register");
 $r->addRoute("verify","POST","LoginController", "verifyUser");
 $r->addRoute("logout","GET","LoginController", "logout");
 $r->addRoute("peliculas","GET","UserController", "showPeliculas");

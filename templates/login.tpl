@@ -1,10 +1,10 @@
 {include 'templates/header.tpl'}
 <div class="container">
-    <form action="verify" method="POST" class="col-md-4 offset-md-4 mt-4">
+    <form action="{$ver_reg}" method="POST" class="col-md-4 offset-md-4 mt-4">
         <h1>{$titulo}</h1>
 
         <div class="form-group">
-            <label>Usuario (email)</label>
+            <label>Usuario</label>
             <input type="text" name="user" class="form-control" placeholder="Ingrese email">
         </div>
 
@@ -19,7 +19,7 @@
         </div>
         {/if} 
 
-        <button type="submit" class="btn btn-primary">Ingresar</button>
+        <button type="submit" class="btn btn-primary">{$signin_signup}</button>
     </form>
 
 </div>

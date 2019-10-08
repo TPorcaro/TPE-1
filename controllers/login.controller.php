@@ -19,9 +19,34 @@ include_once('helpers/auth.helper.php');
             $generos = $this->modelg->getAll();
             $this->view->showLogin($generos);
         }
-        public function verifyUser(){
+        public function showRegister(){
             $generos = $this->modelg->getAll();
-            
+            $this->view->showRegister($generos);
+        }
+        public function register(){
+            $generos = $this->modelg->getAll();   
+            $username = $_POST['user'];
+            $password = $_POST['password'];
+            if (!empty($username) && !empty($password)) {
+                $exist_user = $this->model->getByUsername($username);
+                if(!$exist_user){
+                    $hash= password_hash($password, PASSWORD_DEFAULT);
+                    $this->model->register($username, $hash);
+                    $user= $this->model->getByUsername($username);
+                    $this->authHelper->login($user);
+                    header('Location: peliculas');
+                }
+                else{
+                    $this->view->showLogin($generos,'User ya existente');
+                }
+            }
+            else{
+                $this->view->showLogin($generos, "Campos vacios");
+            }
+
+        }
+        public function verifyUser(){
+            $generos = $this->modelg->getAll();          
             $username = $_POST['user'];
             $password = $_POST['password'];
 

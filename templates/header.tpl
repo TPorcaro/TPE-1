@@ -32,7 +32,7 @@
       </li>
     </ul>
 
-     {if $userName} {* Nunca le llega el parametro, cambiar por un funcion que sepa si esta log o no*}
+     {if $userName} 
         <div class="navbar-nav ml-auto">
             <span class="navbar-text">{$userName}</span>
             <a class="nav-item nav-link" href="logout">LOGOUT</a>
@@ -40,6 +40,9 @@
         {else}
         <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="login">LOGIN</a>
+        </div>
+        <div class="navbar-nav ">
+            <a class="nav-item nav-link" href="register">REGISTRARSE</a>
         </div>
       {/if}
   </div>

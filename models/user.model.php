@@ -12,5 +12,9 @@
     
             return $query->fetch(PDO::FETCH_OBJ);
         }
+        public function register($username, $password){
+            $query = $this->db->prepare('INSERT INTO users(username, password) VALUE(?,?)');
+            $query->execute([$username, $password]);
+        }
     
     }

@@ -16,6 +16,16 @@
             $this->smarty->assign('titulo', 'Iniciar Sesión');
             $this->smarty->assign('error', $error);
             $this->smarty->assign('generos', $generos);
+            $this->smarty->assign('signin_signup', "Ingresar");
+            $this->smarty->assign('ver_reg', "verify");
+            $this->smarty->display('templates/login.tpl');
+        }
+        public function showRegister($generos, $error = NULL) {
+            $this->smarty->assign('titulo', 'Registrar');
+            $this->smarty->assign('error', $error);
+            $this->smarty->assign('generos', $generos);
+            $this->smarty->assign('signin_signup', "Registrarse");
+            $this->smarty->assign('ver_reg', "verify_register");
             $this->smarty->display('templates/login.tpl');
         }
     }
