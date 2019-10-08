@@ -37,11 +37,11 @@ include_once('helpers/auth.helper.php');
                     header('Location: peliculas');
                 }
                 else{
-                    $this->view->showLogin($generos,'User ya existente');
+                    $this->view->showRegister($generos,'User ya existente');
                 }
             }
             else{
-                $this->view->showLogin($generos, "Campos vacios");
+                $this->view->showRegister($generos, "Campos vacios");
             }
 
         }

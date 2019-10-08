@@ -18,14 +18,14 @@ class PeliculaModel{
 
         return $query->fetch(PDO::FETCH_OBJ);
     }
-    public function getJoin($idpelicula){
-        $query = $this->db->prepare('SELECT peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion, peliculas.imagen,
+    public function getConGenero($idpelicula){
+        $query = $this->db->prepare('SELECT peliculas.id_pelicula, peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion, peliculas.imagen,
         peliculas.descripcion, genero.nombre AS genero FROM peliculas JOIN genero ON peliculas.id_genero_fk=genero.id_genero WHERE peliculas.id_pelicula=?');
         $query->execute([$idpelicula]);
         
         return $query->fetch(PDO::FETCH_OBJ);
     }
-    public function getJoinAll(){
+    public function getAllConGenero(){
         $query = $this->db->prepare('SELECT peliculas.id_pelicula, peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion, peliculas.imagen,
         peliculas.descripcion, genero.nombre AS genero FROM peliculas JOIN genero ON peliculas.id_genero_fk=genero.id_genero');
         $query->execute();

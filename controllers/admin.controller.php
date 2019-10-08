@@ -44,7 +44,7 @@
         public function toEditPelicula($params = NULL){
             $idpelicula = $params[':ID'];
             $this->authHelper->checkLogin();
-            $pelicula = $this->modelp->get($idpelicula);
+            $pelicula = $this->modelp->getConGenero($idpelicula);
             $generos = $this->modelg->getAll();
             
             if($pelicula){

@@ -14,13 +14,13 @@
             $this->view = new UserView();
         }
         public function showPeliculas(){
-            $peliculas = $this->modelp->getJoinAll();
+            $peliculas = $this->modelp->getAllConGenero();
             $generos= $this->modelg->getAll();
             $this->view->showPeliculas($peliculas, $generos);
         }
         public function showPelicula($params = NULL){
             $idpelicula = $params[':ID'];
-            $pelicula = $this->modelp->getJoin($idpelicula);
+            $pelicula = $this->modelp->getConGenero($idpelicula);
             $generos = $this->modelg->getAll();
             if($pelicula)
                 $this->view->showPelicula($pelicula, $generos);
@@ -46,5 +46,4 @@
         public function showError($msgError){
             $this->view->showError($msgError);
         }
-        
     }
