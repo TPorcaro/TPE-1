@@ -63,11 +63,11 @@
             $imagen = $_POST['imagen'];
             $descripcion = $_POST['descripcion'];
             $id_genero = $_POST['genero'];
-            if (!empty($nombre) && (!empty($director))){
+            if (!empty($nombre) && (!empty($director)) && (!empty($genero))){
                 $this->modelp->update($nombre, $duracion, $director, $estreno, $imagen, $descripcion, $id_genero, $idpelicula);
                 header("Location: ../peliculas");
             } else
-            $this->viewu->showError("Faltan datos obligatorios");
+            $this->viewu->showError("Faltan datos obligatorios, porfavor ingrese el nombre, el director y el genero");
         }
         public function addGenero(){
             $this->authHelper->checkLogin();

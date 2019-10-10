@@ -18,7 +18,7 @@
             <label>Descripcion</label>
             <input type="text" name="descripcion" value="{$pelicula->descripcion}">
             <select name="genero" id="genero">
-            <option selected value="{$pelicula->genero}">{$pelicula->genero}</option>
+            <option selected></option>
             {foreach $generos as $genero}
                 <option value="{$genero->id_genero}" name="genero">{$genero->nombre}</option>
             {/foreach}
