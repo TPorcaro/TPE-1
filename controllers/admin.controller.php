@@ -63,7 +63,7 @@
             $imagen = $_POST['imagen'];
             $descripcion = $_POST['descripcion'];
             $id_genero = $_POST['genero'];
-            if (!empty($nombre) && (!empty($director))){
+            if (!empty($nombre) && (!empty($director)) && (!empty($id_genero))){
                 $this->modelp->update($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero, $idpelicula);
                 header("Location: ../peliculas");
             } else
