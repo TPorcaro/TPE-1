@@ -54,6 +54,7 @@
                 $this->viewu->showError('La id no pertenece a ninguna pelicula');
         }
         public function editPelicula($params = NULL){
+            $generos= $this->modelg->getAll();
             $idpelicula = $params[':ID'];
             $this->authHelper->checkLogin();
             $nombre = $_POST['nombre'];
@@ -67,7 +68,7 @@
                 $this->modelp->update($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero, $idpelicula);
                 header("Location: ../peliculas");
             } else
-            $this->viewu->showError("Faltan datos obligatorios, porfavor ingrese el nombre, el director y el genero");
+            $this->viewu->showError("Faltan datos obligatorios, porfavor ingrese el nombre, el director y el genero", $generos);
         }
         public function addGenero(){
             $this->authHelper->checkLogin();

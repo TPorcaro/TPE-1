@@ -37,8 +37,9 @@
 
             $this->smarty->display("templates/showGenero.tpl");
         }
-        public function showError($msgError) {
+        public function showError($msgError, $generos) {
             $this->smarty->assign('titulo', 'ERROR');
+            $this->smarty->assign('generos', $generos);
             $this->smarty->assign('msgError', $msgError);
             $this->smarty->display('templates/showError.tpl');
         }
