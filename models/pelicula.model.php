@@ -27,7 +27,7 @@ class PeliculaModel{
     }
     public function getAllConGenero(){
         $query = $this->db->prepare('SELECT peliculas.id_pelicula, peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion, peliculas.imagen,
-        peliculas.descripcion, genero.nombre AS genero FROM peliculas JOIN genero ON peliculas.id_genero_fk=genero.id_genero');
+        peliculas.descripcion, genero.nombre AS genero FROM peliculas JOIN genero ON peliculas.id_genero_fk=genero.id_genero ORDER BY id_pelicula ASC');
         $query->execute();
         
         return $query->fetchAll(PDO::FETCH_OBJ);

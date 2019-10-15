@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-10-2019 a las 20:05:03
+-- Tiempo de generación: 15-10-2019 a las 20:45:40
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.4
 
@@ -42,7 +42,7 @@ INSERT INTO `genero` (`id_genero`, `nombre`, `img`) VALUES
 (4, 'Terror', 'https://www.stickpng.com/assets/thumbs/586fc3d83817baaba563b405.png'),
 (5, 'Accion', 'https://images.vexels.com/media/users/3/138429/isolated/preview/68c5ed5842612a473d6dbd936a0467c1-boxing-kickboxing-fight-silhouette-by-vexels.png'),
 (6, 'Comedia', 'https://pngimage.net/wp-content/uploads/2018/05/comedia-png-3.png'),
-(7, 'Romance', 'https://www.pngarts.com/files/3/Romance-Free-PNG-Image.png');
+(8, 'Fantasia', 'https://img2.freepng.es/20180612/cpl/kisspng-sauron-the-lord-of-the-rings-evil-eye-ojos-5b1ffe8f1bdff4.3748890915288234391142.jpg');
 
 --
 -- Índices para tablas volcadas
@@ -62,7 +62,7 @@ ALTER TABLE `genero`
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
