@@ -13,8 +13,15 @@ require_once('helpers/auth.helper.php');
                 $this->smarty->assign('userName', $userName);
         }
         public function showUsers($users, $generos){
-            $this->smarty->assign('titulo', 'All Movies');
+            $this->smarty->assign('titulo', 'All Users');
             $this->smarty->assign('users', $users);
+            $this->smarty->assign('generos', $generos);
             $this->smarty->display('templates/showUsers.tpl');
+        }
+        public function showError($msgError, $generos){
+            $this->smarty->assign('titulo', 'Error');
+            $this->smarty->assign('msgError', $msgError);
+            $this->smarty->assign('generos', $generos);
+            $this->smarty->display('templates/showError.tpl');
         }
     }

@@ -21,4 +21,15 @@
             $generos= $this->modelg->getAll();
             $this->view->showUsers($users, $generos);
         }
+        public function deleteUser($params=NULL){
+            $iduser = $params[':ID'];
+            $generos= $this->modelg->getAll();
+            $user= $this->modelu->getByID($iduser);
+            if($user->admin!=0){
+                $this->view->showError('ERROR: Imposible borrar a un admin', $generos);
+                die();
+            }
+            $this->modelu->deleteUser($iduser);
+            header("Location: ../users");
+        }
     }

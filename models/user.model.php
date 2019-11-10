@@ -12,6 +12,12 @@
     
             return $query->fetch(PDO::FETCH_OBJ);
         }
+        public function getByID($iduser) {
+            $query = $this->db->prepare('SELECT * FROM users WHERE id_user = ?');
+            $query->execute(array($iduser));
+    
+            return $query->fetch(PDO::FETCH_OBJ);
+        }
         public function register($username, $password, $admin){
             $query = $this->db->prepare('INSERT INTO users(username, password, admin) VALUE(?,?,?)');
             $query->execute([$username, $password, $admin]);
@@ -21,6 +27,10 @@
             $query->execute();
 
             return $query->fetchAll(PDO::FETCH_OBJ);
+        }
+        public function deleteUser($iduser){
+            $query = $this->db->prepare('DELETE FROM users where id_user = ?');
+            $query->execute([$iduser]);
         }
     
     }
