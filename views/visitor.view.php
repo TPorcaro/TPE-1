@@ -1,7 +1,7 @@
 <?php
     require_once('libs/Smarty.class.php');
     require_once('helpers/auth.helper.php');
-    class UserView {
+    class VisitorView {
 
         private $smarty;
         public function __construct(){

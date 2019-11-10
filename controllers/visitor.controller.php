@@ -1,9 +1,9 @@
 <?php
     include_once('models/pelicula.model.php');
     include_once('models/genero.model.php');
-    include_once('views/user.view.php');
+    include_once('views/visitor.view.php');
 
-    class UserController{
+    class VisitorController{
         private $modelp;
         private $modelg;
         private $view;
@@ -11,7 +11,7 @@
         public function __construct(){
             $this->modelp = new PeliculaModel();
             $this->modelg = new GeneroModel();
-            $this->view = new UserView();
+            $this->view = new VisitorView();
         }
         public function showPeliculas(){
             $peliculas = $this->modelp->getAllConGenero();
