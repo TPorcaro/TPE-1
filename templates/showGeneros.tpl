@@ -4,14 +4,14 @@
                 <li>
                 Nombre: <a href="generos/{$genero->id_genero}">{$genero->nombre}</a> 
                 <img class="img-genero" src="{$genero->img}" alt=" "> 
-                {if isset($userName)}
+                {if $admin!=0}
                 <small><a href="borrargenero/{$genero->id_genero}">ELIMINAR</a></small>
                 <small><a href="paraeditargenero/{$genero->id_genero}">EDITAR</a></small>
                 {/if}
                 </li>
                 {/foreach}
         </ul>
-        {if isset($userName)}
+        {if $admin!=0}
         <div>
         <form action="nuevogenero" method="POST">
             <label>Nombre</label>

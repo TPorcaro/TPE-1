@@ -1,7 +1,8 @@
 <?php
 require_once('controllers/admin.controller.php');
-require_once('controllers/user.controller.php');
+require_once('controllers/visitor.controller.php');
 require_once('controllers/login.controller.php');
+require_once('controllers/users.controller.php');
 require_once('Router.php');
 
 define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -16,20 +17,21 @@ $r->addRoute("register","GET","LoginController", "showRegister");
 $r->addRoute("verify_register","POST","LoginController", "register");
 $r->addRoute("verify","POST","LoginController", "verifyUser");
 $r->addRoute("logout","GET","LoginController", "logout");
-$r->addRoute("peliculas","GET","UserController", "showPeliculas");
-$r->addRoute("peliculas/:ID","GET","UserController", "showPelicula");
+$r->addRoute("peliculas","GET","VisitorController", "showPeliculas");
+$r->addRoute("peliculas/:ID","GET","VisitorController", "showPelicula");
 $r->addRoute("nuevapelicula","POST","AdminController", "addPelicula");
 $r->addRoute("borrarpelicula/:ID","GET","AdminController", "deletePelicula");
 $r->addRoute("paraeditar/:ID","GET","AdminController", "ToEditPelicula");
 $r->addRoute("editarpelicula/:ID","POST","AdminController", "editPelicula");
-$r->addRoute("generos","GET","UserController", "showGeneros");
-$r->addRoute("generos/:ID","GET","UserController", "showGenero");
+$r->addRoute("generos","GET","VisitorController", "showGeneros");
+$r->addRoute("generos/:ID","GET","VisitorController", "showGenero");
 $r->addRoute("nuevogenero","POST","AdminController", "addGenero");
 $r->addRoute("borrargenero/:ID","GET","AdminController", "deleteGenero");
 $r->addRoute("paraeditargenero/:ID","GET","AdminController", "toEditGenero");
 $r->addRoute("editargenero/:ID","POST","AdminController", "editGenero");
+$r->addRoute("users","GET","UsersController", "showUsers");
 
-$r->setDefaultRoute("UserController", "showGeneros");
+$r->setDefaultRoute("VisitorController", "showGeneros");
 
 $r->route($_GET['accion'], $_SERVER['REQUEST_METHOD']); 
 
@@ -52,7 +54,7 @@ switch ($partesURL[0]){
         $controller->logout();
         break;
     case 'peliculas':
-        $controller = new UserController();
+        $controller = new VisitorController();
         if(isset($partesURL[1]))
         $controller->showPelicula($partesURL[1]);
         else
@@ -75,7 +77,7 @@ switch ($partesURL[0]){
         $controller->editPelicula($partesURL[1]);
         break;
     case 'generos':
-        $controller= new UserController();
+        $controller= new VisitorController();
         if (isset($partesURL[1]))
         $controller-> showGenero($partesURL[1]);
         else
@@ -98,7 +100,7 @@ switch ($partesURL[0]){
         $controller-> editGenero($partesURL[1]);
         break;
         default:
-        $controller= new UserController();
+        $controller= new VisitorController();
         $controller->showError("ERROR 404 PAGE NOT FOUND XD");
         break;
 }*/

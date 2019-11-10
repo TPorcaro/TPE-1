@@ -12,9 +12,15 @@
     
             return $query->fetch(PDO::FETCH_OBJ);
         }
-        public function register($username, $password){
-            $query = $this->db->prepare('INSERT INTO users(username, password) VALUE(?,?)');
-            $query->execute([$username, $password]);
+        public function register($username, $password, $admin){
+            $query = $this->db->prepare('INSERT INTO users(username, password, admin) VALUE(?,?,?)');
+            $query->execute([$username, $password, $admin]);
+        }
+        public function getUsers(){
+            $query = $this->db->prepare('SELECT * FROM users ORDER BY id_user ASC');
+            $query->execute();
+
+            return $query->fetchAll(PDO::FETCH_OBJ);
         }
     
     }

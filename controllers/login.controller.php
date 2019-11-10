@@ -31,7 +31,7 @@ include_once('helpers/auth.helper.php');
                 $exist_user = $this->model->getByUsername($username);
                 if(!$exist_user){
                     $hash= password_hash($password, PASSWORD_DEFAULT);
-                    $this->model->register($username, $hash);
+                    $this->model->register($username, $hash, 0);
                     $user= $this->model->getByUsername($username);
                     $this->authHelper->login($user);
                     header('Location: peliculas');

@@ -2,7 +2,7 @@
     include_once('models/genero.model.php');
     include_once('models/pelicula.model.php');
     include_once('views/admin.view.php');
-    include_once('views/user.view.php');
+    include_once('views/visitor.view.php');
     include_once('helpers/auth.helper.php');
 
     class AdminController{
@@ -17,10 +17,10 @@
             $this->modelg= new GeneroModel();
             $this->modelp= new PeliculaModel();
             $this->viewa= new AdminView();
-            $this->viewu= new UserView();
+            $this->viewu= new VisitorView();
         }
         public function addPelicula(){
-            $this->authHelper->checkLogin();
+            $this->authHelper->checkAdmin();
             $generos= $this->modelg->getAll();
             $nombre = $_POST['nombre'];
             $duracion = $_POST['duracion'];
@@ -37,13 +37,13 @@
         }
         public function deletePelicula($params = NULL) {
             $idpelicula = $params[':ID'];
-            $this->authHelper->checkLogin();
+            $this->authHelper->checkAdmin();
             $this->modelp->delete($idpelicula);
             header("Location: ../peliculas");
         }
         public function toEditPelicula($params = NULL){
             $idpelicula = $params[':ID'];
-            $this->authHelper->checkLogin();
+            $this->authHelper->checkAdmin();
             $pelicula = $this->modelp->getConGenero($idpelicula);
             $generos = $this->modelg->getAll();
             
@@ -56,7 +56,7 @@
         public function editPelicula($params = NULL){
             $generos= $this->modelg->getAll();
             $idpelicula = $params[':ID'];
-            $this->authHelper->checkLogin();
+            $this->authHelper->checkAdmin();
             $nombre = $_POST['nombre'];
             $duracion = $_POST['duracion'];
             $director = $_POST['director'];
@@ -71,7 +71,7 @@
             $this->viewu->showError("Faltan datos obligatorios, porfavor ingrese el nombre, el director y el genero", $generos);
         }
         public function addGenero(){
-            $this->authHelper->checkLogin();
+            $this->authHelper->checkAdmin();
             $nombre= $_POST['nombre'];
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){
@@ -83,13 +83,13 @@
         }
         public function deleteGenero($params = NULL){
             $idgenero = $params[':ID'];
-            $this->authHelper->checkLogin();;
+            $this->authHelper->checkAdmin();;
             $this->modelg->delete($idgenero);
             header('Location: ../generos');
         }
         public function toEditGenero($params = NULL){
             $idgenero = $params[':ID'];
-            $this->authHelper->checkLogin();
+            $this->authHelper->checkAdmin();
             $genero = $this->modelg->get($idgenero);
             $generos = $this->modelg->getAll();
             if($genero)
@@ -99,7 +99,7 @@
         }
         public function editGenero($params = NULL){
             $idgenero = $params[':ID'];
-            $this->authHelper->checkLogin();
+            $this->authHelper->checkAdmin();
             $nombre= $_POST['nombre'];
             $imagen= $_POST['imagen'];
             if(!empty($nombre)){
