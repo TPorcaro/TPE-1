@@ -31,6 +31,7 @@ $r->addRoute("paraeditargenero/:ID","GET","AdminController", "toEditGenero");
 $r->addRoute("editargenero/:ID","POST","AdminController", "editGenero");
 $r->addRoute("users","GET","UsersController", "showUsers");
 $r->addRoute("borraruser/:ID","GET","UsersController", "deleteUser");
+$r->addRoute("darpermiso/:ID","GET","UsersController", "darPermisos");
 
 $r->setDefaultRoute("VisitorController", "showGeneros");
 

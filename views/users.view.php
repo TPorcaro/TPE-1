@@ -9,8 +9,10 @@ require_once('helpers/auth.helper.php');
                 $authHelper = new AuthHelper();
                 $userName = $authHelper->getLoggedUsername();
                 $this->smarty = new Smarty();
+                $admin = $authHelper->getAdmin();
                 $this->smarty->assign('basehref', BASE_URL);
                 $this->smarty->assign('userName', $userName);
+                $this->smarty->assign('admin', $admin);
         }
         public function showUsers($users, $generos){
             $this->smarty->assign('titulo', 'All Users');

@@ -32,5 +32,8 @@
             $query = $this->db->prepare('DELETE FROM users where id_user = ?');
             $query->execute([$iduser]);
         }
-    
+        public function darPermisos($permisos, $iduser){
+            $query = $this->db->prepare('UPDATE users SET admin = ? WHERE id_user= ?');
+            $query->execute([$permisos, $iduser]);
+        }
     }

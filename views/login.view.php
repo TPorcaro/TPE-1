@@ -7,9 +7,11 @@
         public function __construct() {
             $authHelper = new AuthHelper();
             $userName = $authHelper->getLoggedUsername();
+            $admin = $authHelper->getAdmin();
             $this->smarty = new Smarty();
             $this->smarty->assign('basehref', BASE_URL);
             $this->smarty->assign('userName', $userName);
+            $this->smarty->assign('admin', $admin);
             
         }
         public function showLogin($generos, $error = NULL) {

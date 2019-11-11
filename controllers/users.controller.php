@@ -32,4 +32,15 @@
             $this->modelu->deleteUser($iduser);
             header("Location: ../users");
         }
+        public function darPermisos($params=NULL){
+            $iduser= $params[':ID'];
+            $generos= $this->modelg->getAll();
+            $user= $this->modelu->getByID($iduser);
+            if($user->admin!=0){
+                $this->modelu->darPermisos(0, $iduser);
+            }else{
+                $this->modelu->darPermisos(1, $iduser);
+            }
+            header("Location: ../users");
+        }
     }
