@@ -20,9 +20,10 @@
             $this->smarty->assign('generos', $generos);
             $this->smarty->display('templates/showPeliculas.tpl');
         }
-        public function showPelicula($pelicula, $generos){
+        public function showPelicula($pelicula, $generos, $imagenes){
             $this->smarty->assign('titulo', $pelicula->nombre);
             $this->smarty->assign('pelicula', $pelicula);
+            $this->smarty->assign('imagenes', $imagenes);
             $this->smarty->assign('generos', $generos);
             $this->smarty->display('templates/showPelicula.tpl');
         }

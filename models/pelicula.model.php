@@ -40,6 +40,7 @@ class PeliculaModel{
     public function save($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero){
         $query= $this->db->prepare('INSERT INTO peliculas(nombre, director, estreno, duracion, imagen, descripcion, id_genero_fk) VALUES (?,?,?,?,?,?,?)');
         $query->execute([$nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero]);
+        return $this->db->lastInsertId();
     }
     public function delete($idpelicula){
         $query = $this->db->prepare('DELETE FROM peliculas where id_pelicula = ?');

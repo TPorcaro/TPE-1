@@ -13,17 +13,18 @@
         </ul>
         {if $admin!=0}
         <div>
-        <form action="nuevapelicula" method="POST">
+        <form action="nuevapelicula" method="POST" enctype="multipart/form-data">
             <label>Nombre</label>
             <input type="text" name="nombre">
             <label>Director</label>
             <input type="text" name="director">
             <label>Estreno</label>
-            <input type="text" name="estreno">
+            <input type="text" name="estreno"> 
             <label>Duracion</label>
             <input type="text" name="duracion">
             <label>Imagen</label>
-            <input type="text" name="imagen">
+            <input type="text" name="imagen"> 
+            <input type="file" name="imagenes[]" accept=".jpg, .png, .jpeg" multiple="">
             <label>Descripcion</label>
             <input type="text" name="descripcion">
             <select name="genero">
