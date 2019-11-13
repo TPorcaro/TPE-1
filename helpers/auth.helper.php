@@ -42,7 +42,7 @@
         public function checkAdmin(){
            $this->checkLogin();
            if($_SESSION['ADMIN']==0){
-                echo 'No tienes los permisos suficientes';
+                header('Location: peliculas');
                 die();
            }
         }

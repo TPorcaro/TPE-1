@@ -28,53 +28,44 @@
             $nombre = $_POST['nombre'];
             $duracion = $_POST['duracion'];
             $director = $_POST['director'];
-            $estreno = $_POST['estreno'];
-            $imagen = $_POST['imagen'];
-            //$ruta = $this->uploadImg($_FILES);
-            
+            $estreno = $_POST['estreno'];       
             $descripcion = $_POST['descripcion'];
             $id_genero = $_POST['genero'];
             if (!empty($nombre) && (!empty($director)) && (!empty($id_genero))){
-                $id_pelicula = $this->modelp->save($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero);
-                foreach($_FILES["imagenes"]['tmp_name'] as $key => $tmp_name){
-	
-                    //Validamos que el archivo exista
-                    if($_FILES["imagenes"]["name"][$key]) {
-                        $filename = $_FILES["imagenes"]["name"][$key]; //Obtenemos el nombre original del archivo
-                        $source = $_FILES["imagenes"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
-                        
-                        $directorio = 'img/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
-                        
-                        //Validamos si la ruta de destino existe, en caso de no existir la creamos
-                        if(!file_exists($directorio)){
-                            mkdir($directorio, 0777) or die("No se puede crear el directorio de extracci&oacute;n");	
-                        }
-                        
-                        $dir=opendir($directorio); //Abrimos el directorio de destino
-                        $target_path = $directorio. uniqid() . "." . pathinfo($filename, PATHINFO_EXTENSION);
-                        //Indicamos la ruta de destino, así como el nombre del archivo
-                        var_dump($target_path);
-                        //Movemos y validamos que el archivo se haya cargado correctamente
-                        //El primer campo es el origen y el segundo el destino
-                        $this->modelm->save($target_path, $id_pelicula);
-                        if(move_uploaded_file($source, $target_path)) {	
-                            echo "El archivo $filename se ha almacenado en forma exitosa.<br>";
-                            } else {	
-                            echo "Ha ocurrido un error, por favor inténtelo de nuevo.<br>";
-                        }
-                        closedir($dir); //Cerramos el directorio de destino
-                    }
-                }
-                //$this->modelm->save($source, $id_pelicula);
-                //header("Location: peliculas");
+                $id_pelicula = $this->modelp->save($nombre, $director, $estreno, $duracion, $descripcion, $id_genero);
+                $this->saveImg($id_pelicula);
+                
+                header("Location: peliculas");
             } else
             $this->viewa->showError("Faltan datos obligatorios", $generos);
         }
         public function deletePelicula($params = NULL) {
             $idpelicula = $params[':ID'];
             $this->authHelper->checkAdmin();
+            $this->deleteImgLocal($idpelicula);
             $this->modelp->delete($idpelicula);
             header("Location: ../peliculas");
+        }
+        private function deleteimgLocal($id_pelicula){
+            $imagenes = $this->modelm->getImgByPelicula($id_pelicula);
+            foreach ($imagenes as $imagen) {
+                unlink($imagen->ruta);
+            }
+        }
+        public function deleteImg($params = NULL){
+            $id_imagen = $params[':ID'];
+            $this->authHelper->checkAdmin();
+            $imagen = $this->modelm->getImagen($id_imagen);
+            unlink($imagen->ruta);
+            $this->modelm->deleteByID($id_imagen);
+            header("Location: ../peliculas/".$imagen->id_pelicula_fk);
+        }
+        public function deleteAllImgByPelicula($params = NULL){
+            $id_pelicula= $params[':ID'];
+            $this->authHelper->checkAdmin();
+            $this->deleteImgLocal($id_pelicula);
+            $this->modelm->deleteByPelicula($id_pelicula);
+            header("Location: ../peliculas/".$id_pelicula);
         }
         public function toEditPelicula($params = NULL){
             $idpelicula = $params[':ID'];
@@ -83,6 +74,7 @@
             $generos = $this->modelg->getAll();
             
             if($pelicula){
+                
                 $this->viewa->showToEdit($pelicula, $generos);
             }
             else
@@ -96,11 +88,11 @@
             $duracion = $_POST['duracion'];
             $director = $_POST['director'];
             $estreno = $_POST['estreno'];
-            $imagen = $_POST['imagen'];
             $descripcion = $_POST['descripcion'];
             $id_genero = $_POST['genero'];
             if (!empty($nombre) && (!empty($director)) && (!empty($id_genero))){
-                $this->modelp->update($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero, $idpelicula);
+                $this->saveImg($idpelicula);
+                $this->modelp->update($nombre, $director, $estreno, $duracion, $descripcion, $id_genero, $idpelicula);
                 header("Location: ../peliculas");
             } else
             $this->viewu->showError("Faltan datos obligatorios, porfavor ingrese el nombre, el director y el genero", $generos);
@@ -142,10 +134,31 @@
               header("Location: ../generos");
             }
             else
-                $this->viewu->showError("Por favor  ingrese un nombre");
+            $this->viewu->showError("Por favor  ingrese un nombre");
         }
         public function showError($msgerror){
             $generos = $this->modelg->getAll();
             $this->viewu->showError($msgerror,$generos);
         }
+    private function saveImg($id_pelicula){
+        foreach($_FILES["imagenes"]['tmp_name'] as $key => $tmp_name){
+
+            //Validamos que el archivo exista
+            if($_FILES["imagenes"]["name"][$key]) {
+                if($_FILES['imagenes']['type'][$key] == "image/jpg" || $_FILES['imagenes']['type'][$key] == "image/jpeg" 
+                || $_FILES['imagenes']['type'][$key] == "image/png" ) {
+                $filename = $_FILES["imagenes"]["name"][$key]; //Obtenemos el nombre original del archivo
+                $source = $_FILES["imagenes"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
+                
+                $directorio = 'img/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
+                
+                
+                $dir=opendir($directorio); //Abrimos el directorio de destino
+                $target_path = $this->modelm->uploadImage($directorio, $source, $filename);
+                $this->modelm->save($target_path, $id_pelicula);
+                closedir($dir); //Cerramos el directorio de destino
+                }
+            }
+        }
     }
+}

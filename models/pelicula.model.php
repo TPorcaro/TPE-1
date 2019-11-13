@@ -19,14 +19,14 @@ class PeliculaModel{
         return $query->fetch(PDO::FETCH_OBJ);
     }
     public function getConGenero($idpelicula){
-        $query = $this->db->prepare('SELECT peliculas.id_pelicula, peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion, peliculas.imagen,
+        $query = $this->db->prepare('SELECT peliculas.id_pelicula, peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion,
         peliculas.descripcion, genero.nombre AS genero FROM peliculas JOIN genero ON peliculas.id_genero_fk=genero.id_genero WHERE peliculas.id_pelicula=?');
         $query->execute([$idpelicula]);
         
         return $query->fetch(PDO::FETCH_OBJ);
     }
     public function getAllConGenero(){
-        $query = $this->db->prepare('SELECT peliculas.id_pelicula, peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion, peliculas.imagen,
+        $query = $this->db->prepare('SELECT peliculas.id_pelicula, peliculas.nombre, peliculas.director, peliculas.estreno, peliculas.duracion,
         peliculas.descripcion, genero.nombre AS genero FROM peliculas JOIN genero ON peliculas.id_genero_fk=genero.id_genero ORDER BY id_pelicula ASC');
         $query->execute();
         
@@ -37,18 +37,18 @@ class PeliculaModel{
         $query-> execute([$id_genero]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-    public function save($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero){
-        $query= $this->db->prepare('INSERT INTO peliculas(nombre, director, estreno, duracion, imagen, descripcion, id_genero_fk) VALUES (?,?,?,?,?,?,?)');
-        $query->execute([$nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero]);
+    public function save($nombre, $director, $estreno, $duracion, $descripcion, $id_genero){
+        $query= $this->db->prepare('INSERT INTO peliculas(nombre, director, estreno, duracion, descripcion, id_genero_fk) VALUES (?,?,?,?,?,?)');
+        $query->execute([$nombre, $director, $estreno, $duracion, $descripcion, $id_genero]);
         return $this->db->lastInsertId();
     }
     public function delete($idpelicula){
         $query = $this->db->prepare('DELETE FROM peliculas where id_pelicula = ?');
         $query->execute([$idpelicula]);
     }
-    public function update($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero, $idpelicula){
-        $query = $this->db->prepare('UPDATE peliculas SET nombre=? , director=?, estreno=?, duracion=?, imagen=?, descripcion=?, id_genero_fk=? WHERE id_pelicula =?');
-        $query->execute(array($nombre, $director, $estreno, $duracion, $imagen, $descripcion, $id_genero, $idpelicula));
+    public function update($nombre, $director, $estreno, $duracion, $descripcion, $id_genero, $idpelicula){
+        $query = $this->db->prepare('UPDATE peliculas SET nombre=? , director=?, estreno=?, duracion=?, descripcion=?, id_genero_fk=? WHERE id_pelicula =?');
+        $query->execute(array($nombre, $director, $estreno, $duracion, $descripcion, $id_genero, $idpelicula));
         //var_dump($query->errorinfo());
     }
 }

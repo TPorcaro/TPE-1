@@ -32,7 +32,8 @@ $r->addRoute("editargenero/:ID","POST","AdminController", "editGenero");
 $r->addRoute("users","GET","UsersController", "showUsers");
 $r->addRoute("borraruser/:ID","GET","UsersController", "deleteUser");
 $r->addRoute("darpermiso/:ID","GET","UsersController", "darPermisos");
-
+$r->addRoute("deleteImg/:ID","GET","AdminController", "deleteImg");
+$r->addRoute("deleteAllImg/:ID","GET","AdminController", "deleteAllImgByPelicula");
 $r->setDefaultRoute("VisitorController", "showGeneros");
 
 $r->route($_GET['accion'], $_SERVER['REQUEST_METHOD']); 

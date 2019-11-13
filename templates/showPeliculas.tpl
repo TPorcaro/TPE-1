@@ -22,8 +22,7 @@
             <input type="text" name="estreno"> 
             <label>Duracion</label>
             <input type="text" name="duracion">
-            <label>Imagen</label>
-            <input type="text" name="imagen"> 
+            <label>Imagenes</label>
             <input type="file" name="imagenes[]" accept=".jpg, .png, .jpeg" multiple="">
             <label>Descripcion</label>
             <input type="text" name="descripcion">
