@@ -38,7 +38,6 @@ include_once('helpers/auth.helper.php');
         }
     }
     public function addComentario(){
-        $this->authHelper->checkLogin();
         $data = $this->getData();
         $comentario = $this->modelc->save($data->cuerpo , $data->puntaje, $data->id_pelicula_fk, $data->id_user_fk);
         if($comentario){

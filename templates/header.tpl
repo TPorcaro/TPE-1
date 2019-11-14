@@ -8,6 +8,7 @@
             <link rel="stylesheet" href="css\css-boostrap-4.3.1\bootstrap.min.css">
             <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
             <link rel="stylesheet" href="css\style.css">
+            <script src="js/script.js"></script>
             <title>{$titulo}</title>
         </head>
         <body>

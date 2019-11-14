@@ -21,16 +21,19 @@
                  </li>
             </ul>
         </div>
+        <input hidden disabled value="{$pelicula->id_pelicula}" type="text" class="idpelicula">
         {if $imagenes}
         <a href="deleteAllImg/{$pelicula->id_pelicula}">Borrar Todas</a>
-            
         {/if}
         <div class="col-12">
                     {foreach from=$imagenes item=imagen}
-                        <a  href="deleteImg/{$imagen->id_imagen}">Borrar imagen</a>
+                        <a href="deleteImg/{$imagen->id_imagen}">Borrar imagen</a>
                         <img  class="img-reduc" src="{$imagen->ruta}" class="d-block w-100 h-100" alt="img">
                     {/foreach}
-         </div>   
+         </div>
+         <div class="col-md-3">
+            {include 'vue/footerComentario.tpl'}
+          </div>  
     </div>
 </div>
 
