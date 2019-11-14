@@ -27,11 +27,12 @@ include_once('helpers/auth.helper.php');
             $generos = $this->modelg->getAll();   
             $username = $_POST['user'];
             $password = $_POST['password'];
+            $mail = $_POST['mail'];
             if (!empty($username) && !empty($password)) {
                 $exist_user = $this->model->getByUsername($username);
                 if(!$exist_user){
                     $hash= password_hash($password, PASSWORD_DEFAULT);
-                    $this->model->register($username, $hash, 0);
+                    $this->model->register($username, $mail, $hash, 0);
                     $user= $this->model->getByUsername($username);
                     $this->authHelper->login($user);
                     header('Location: peliculas');

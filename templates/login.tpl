@@ -7,6 +7,13 @@
             <label>Usuario</label>
             <input type="text" name="user" class="form-control" placeholder="Ingrese email">
         </div>
+        {if $ver_reg=="verify_register"}
+             <div class="form-group">
+            <label>Mail</label>
+            <input type="text" name="mail" class="form-control" placeholder="Ingrese email">
+        </div>
+        {/if}
+       
 
         <div class="form-group">
             <label>Password</label>
