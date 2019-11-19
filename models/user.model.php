@@ -36,4 +36,22 @@
             $query = $this->db->prepare('UPDATE users SET admin = ? WHERE id_user= ?');
             $query->execute([$permisos, $iduser]);
         }
+        public function sendRecovery($token, $iduser){
+            $query = $this->db->prepare('UPDATE users set recovery = ? WHERE id_user=?');
+            $query->execute([$token, $iduser]);
+        }
+        public function getByRecovery($token) {
+            $query = $this->db->prepare('SELECT * FROM users WHERE recovery = ?');
+            $query->execute(array($token));
+    
+            return $query->fetch(PDO::FETCH_OBJ);
+        }
+        public function resetPassword($password, $id){
+            $query = $this->db->prepare('UPDATE users set password = ? WHERE id_user = ?');
+            $query->execute([$password, $id]);
+        }
+        public function deleteToken($iduser){
+            $query = $this->db->prepare('UPDATE users set recovery = "" WHERE id_user =?');
+            $query->execute([$iduser]);
+        }
     }

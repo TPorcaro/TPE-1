@@ -13,8 +13,6 @@
             <input type="text" name="mail" class="form-control" placeholder="Ingrese email">
         </div>
         {/if}
-       
-
         <div class="form-group">
             <label>Password</label>
             <input type="password" name="password" class="form-control" placeholder="Password">
@@ -27,6 +25,7 @@
         {/if} 
 
         <button type="submit" class="btn btn-primary">{$signin_signup}</button>
+        <a href="showRecovery">Olvido su contraseña? dou</a>
     </form>
 
 </div>

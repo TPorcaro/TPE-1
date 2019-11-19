@@ -34,6 +34,10 @@ $r->addRoute("borraruser/:ID","GET","UsersController", "deleteUser");
 $r->addRoute("darpermiso/:ID","GET","UsersController", "darPermisos");
 $r->addRoute("deleteImg/:ID","GET","AdminController", "deleteImg");
 $r->addRoute("deleteAllImg/:ID","GET","AdminController", "deleteAllImgByPelicula");
+$r->addRoute("showRecovery","GET","LoginController", "showRecovery");
+$r->addRoute("send_recovery","POST","LoginController", "sendRecovery");
+$r->addRoute("password_recovery","GET","LoginController", "passwordRecovery");
+$r->addRoute("reset_password","POST","LoginController", "resetPassword");
 $r->setDefaultRoute("VisitorController", "showGeneros");
 
 $r->route($_GET['accion'], $_SERVER['REQUEST_METHOD']); 

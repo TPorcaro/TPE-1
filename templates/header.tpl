@@ -41,7 +41,7 @@
 
      {if $userName} 
         <div class="navbar-nav ml-auto">
-            <span class="navbar-text">{$userName}</span>
+            <span id="{$id_user}" class="navbar-text username-id">{$userName}</span>
             <a class="nav-item nav-link" href="logout">LOGOUT</a>
         </div> 
         {else}

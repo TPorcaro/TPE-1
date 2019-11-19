@@ -6,12 +6,15 @@
         private $smarty;
         public function __construct(){
             $authHelper = new AuthHelper();
-            $userName = $authHelper->getLoggedUsername();
-            $admin = $authHelper->getAdmin();
-            $this->smarty = new Smarty();
-            $this->smarty->assign('basehref', BASE_URL);
-            $this->smarty->assign('userName', $userName);
-            $this->smarty->assign('admin', $admin);
+                $Sesion= $authHelper->getLoggedUsername();
+                $userName = $Sesion["USERNAME"];
+                $id_user = $Sesion["ID_USER"];
+                $this->smarty = new Smarty();
+                $admin = $authHelper->getAdmin();
+                $this->smarty->assign('basehref', BASE_URL);
+                $this->smarty->assign('userName', $userName);
+                $this->smarty->assign('id_user', $id_user);
+                $this->smarty->assign('admin', $admin);
         }
 
         public function showPeliculas($peliculas, $generos){

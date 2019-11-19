@@ -28,6 +28,7 @@ include_once('helpers/auth.helper.php');
         return json_decode($this->data);
     }
     public function getComentariosByPelicula($params = NULL){
+        //$this->authHelper->checkLogin(); 
         $id_pelicula = $params[':ID'];
         if($this->modelp->get($id_pelicula)){
             $this->modelg->getAll();
@@ -38,6 +39,7 @@ include_once('helpers/auth.helper.php');
         }
     }
     public function addComentario(){
+        //$this->authHelper->checkAdmin();
         $data = $this->getData();
         $comentario = $this->modelc->save($data->cuerpo , $data->puntaje, $data->id_pelicula_fk, $data->id_user_fk);
         if($comentario){
@@ -47,7 +49,7 @@ include_once('helpers/auth.helper.php');
         }
     }
     public function deleteComentario($params = NULL){
-        $this->authHelper->checkAdmin();
+        //$this->authHelper->checkAdmin();
         $id_comentario = $params[':ID'];
         $comentario = $this->modelc->get($id_comentario);
         if($comentario){

@@ -6,7 +6,8 @@
         private $smarty;
         public function __construct(){
             $authHelper = new AuthHelper();
-            $userName = $authHelper->getLoggedUsername();
+            $Sesion= $authHelper->getLoggedUsername();
+            $userName = $Sesion["USERNAME"];
             $admin = $authHelper->getAdmin();
             $this->smarty= new Smarty();
             $this->smarty->assign('basehref', BASE_URL);

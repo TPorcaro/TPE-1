@@ -19,7 +19,7 @@
 
         public function checkLogin(){
             if(!isset($_SESSION['ID_USER'])){
-                header('Location: ' . LOGIN);
+                header('Location:' . LOGIN);
                 die();
             }
         }
@@ -29,7 +29,7 @@
             if(!isset($_SESSION['ID_USER'])){
                     return NULL;
                 }
-                return $_SESSION['USERNAME'];
+                return $_SESSION;
         }
         public function getAdmin(){
             if(session_status() != PHP_SESSION_ACTIVE)
@@ -42,7 +42,7 @@
         public function checkAdmin(){
            $this->checkLogin();
            if($_SESSION['ADMIN']==0){
-                header('Location: peliculas');
+                header('Location:'. GENEROS);
                 die();
            }
         }
