@@ -85,8 +85,13 @@ include_once('helpers/mail.helper.php');
                 if($exist_user){
                     $token = password_hash($exist_user->id_user . $mail . uniqid(), PASSWORD_DEFAULT);
                     $this->model->sendRecovery($token, $exist_user->id_user);
-                    $this->mailHelper->sendMail($token, $mail, $exist_user->username);
-                    $this->view->showSended($generos, "Se envio el codigo de recuperacion a su mail");
+                    $sendMail= $this->mailHelper->sendMail($token, $mail, $exist_user->username);
+                    if($sendMail){
+                        $this->view->showSended($generos, "El mail ha sido enviado a ". $mail);
+
+                    }else{
+                        $this->view->showSended($generos, "Error al mandar mail");
+                    }
                 }else{
                     $this->view->showRecovery($generos, "user o email no existentes");
                 }

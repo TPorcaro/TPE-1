@@ -9,8 +9,8 @@ require_once("phpmailer/class.smtp.php");
         public function sendMail($token, $direccion, $username){
         $nombre= "Qevana";
         $smtpHost = "smtp.gmail.com";  // Server Smtp que utilizo
-        $smtpUsuario = "";  // Cuenta de gmail
-        $smtpClave = "";  // Mi contraseña
+        $smtpUsuario = "tomasporcaro22@gmail.com";  // Cuenta de gmail
+        $smtpClave = "tomi26081998";  // Mi contraseña
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->SMTPAuth = true;
@@ -47,6 +47,11 @@ require_once("phpmailer/class.smtp.php");
                 'allow_self_signed' => true
             )
         );
-        $mail->Send(); 
+        $success = $mail->Send();
+        if($success){
+            return TRUE;
+            }else{
+                return FALSE;
+            }
         }
     }

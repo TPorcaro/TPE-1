@@ -5,12 +5,12 @@
 
         <div class="form-group">
             <label>Usuario</label>
-            <input type="text" name="user" class="form-control" placeholder="Ingrese email">
+            <input type="text" name="user" class="form-control" placeholder="Usuario">
         </div>
         {if $ver_reg=="verify_register"}
              <div class="form-group">
             <label>Mail</label>
-            <input type="text" name="mail" class="form-control" placeholder="Ingrese email">
+            <input type="email" name="mail" class="form-control" placeholder="Email">
         </div>
         {/if}
         <div class="form-group">
@@ -25,7 +25,9 @@
         {/if} 
 
         <button type="submit" class="btn btn-primary">{$signin_signup}</button>
+        {if $ver_reg!="verify_register"}
         <a href="showRecovery">Olvido su contraseña? dou</a>
+        {/if}
     </form>
 
 </div>
