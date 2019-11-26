@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function(){
             .catch(error => console.log(error));
             },
 
-            addComent: function (){
+            addComent: function (event){
                 let data = {
                     cuerpo: document.querySelector("#input-coment").value,
                     puntaje: document.querySelector("#select-puntaje").value,
@@ -41,11 +41,30 @@ document.addEventListener("DOMContentLoaded", function(){
                     console.log("Consulta POST exitosa")
                 })
                 .catch(error => console.log(error));
-            }
+            },
+            
+            play: function (event){
+                document.querySelector(".contenedor").classList.add('fade');
+                document.querySelector(".section_container").classList.add("section_class");
+                document.querySelector(".contenedor_text").classList.add("text_container");
+                document.querySelector(".fondo").classList.add("fondo_class");
+                audio.loop=false;
+                audio.load();
+                audio.play();
+            },
+            stop: function (event){
+                document.querySelector(".contenedor").classList.remove('fade');
+                document.querySelector(".section_container").classList.remove("section_class");
+                document.querySelector(".contenedor_text").classList.remove("text_container");
+                document.querySelector(".fondo").classList.remove("fondo_class");
+                audio.loop=false;
+                audio.pause();
+            },
             
         },
-    }
-    );
+    });
+        let audio = new Audio();
+        audio.src= "https://www.thesoundarchive.com/starwars/star-wars-theme-song.mp3";
         //let idpelicula = document.querySelector(".container").data-idpelicula;
         document.addEventListener("load", getComentarios());
         function getComentarios(){

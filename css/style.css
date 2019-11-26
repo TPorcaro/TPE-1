@@ -6,3 +6,40 @@
     height: 40px;
     width: auto;
 }
+.fondo_class{
+    background-image: url("https://cdn.pixabay.com/photo/2016/01/27/15/25/space-1164579_960_720.png");
+}
+.fade{
+    position: relative;
+    width: 100%;
+    min-height: 60vh;
+    top: -25px;
+    z-index: 1;
+}
+.section_class{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    color: #feda4a;
+    font-family: 'Arial Narrow', sans-serif;
+    font-size: 400%;
+    line-height: 150%;
+    perspective: 400px;
+    text-align: justify;
+}
+.text_container{
+    position: relative;
+    transform-origin: 50% 100%;
+    animation: starWars 50s linear;
+}
+@keyframes starWars{
+    0%{
+        top: 0;
+        transform: rotateX(20deg) translateZ(0);
+    }
+    100%{
+        top: -7000px;
+        transform: rotateX(25deg) translateZ(-2500px);
+    }
+}

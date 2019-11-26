@@ -1,6 +1,16 @@
 {literal}
 <section id="comentarios_api">
-    <div class="card col-md-6">
+    {/literal}
+    {if $userName == "EasterEgg"}
+    {literal}
+    <div class="col-md-3">
+         <button  @click="(event)=>{play(event)}">play</button>
+         <button  @click="(event)=>{stop(event)}">stop</button>
+    </div>
+    {/literal}
+    {/if}
+    {literal}
+    <div class="card col-md-12">
     <div  v-if= "comentarios[0]" class="col-md-12">
         Este es el promedio
         {{promedio}}
@@ -13,7 +23,6 @@
             <div v-if="loading" class="card-body">
                 Cargando...
             </div>
-            
             <ul v-if="!loading" class="list-group list-group-flush">
                 <a v-for="comentario in comentarios" class="list-group-item list-group-item-action"> 
                 

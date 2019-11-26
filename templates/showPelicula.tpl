@@ -1,8 +1,11 @@
 {include 'templates/header.tpl'} 
 <div class="container" data-idpelicula = "{$pelicula->id_pelicula}">
     <div class="row">
-        <div class="col-12">
-            <ul>
+        <div class="col-12 fondo">
+            <div class="contenedor"></div>
+            <section class="section_container" >
+                <div class="contenedor_text">
+                <ul>
                 {$pelicula->nombre} 
                 <li>
                  Director: {$pelicula->director}
@@ -21,7 +24,9 @@
                  <li>
                  Genero: {$pelicula->genero}
                  </li>
-            </ul>
+                </ul>
+            </div>
+            </section>
         </div>
         <input hidden disabled value="{$pelicula->id_pelicula}" type="text" class="idpelicula">
         {if $imagenes}
@@ -42,6 +47,5 @@
           </div>
     </div>
 </div>
-
 
 {include 'templates/footer.tpl'} 
